@@ -2,10 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Full stack dev evaluation. Devloped with React, Typescript, Node and Mongo.",
-  "main": "index.js",
+  "main": "dist",
   "scripts": {
-    "dev": "nodemon server.ts",
-    "build": "tsc --project ./",
+    "start": "tsc && node ./dist/app.js",
+    "debug": "export DEBUG=* && npm run dev",
+    "dev": "tsc & ENV=dev nodemon dist",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
