@@ -21,16 +21,26 @@ class Environment {
                 break;
         }
     }
+
     public get env(): string | undefined {
         return this.Env;
+    }
+    public set env(newEnv: string | undefined) {
+        this.Env = newEnv;
     }
 
     public get port(): string | undefined {
         return this.Port;
     }
+    public set port(newPort: string | undefined) {
+        this.Port = newPort;
+    }
 
     public get db(): string | undefined {
         return this.Db;
+    }
+    public set db(newDb: string | undefined) {
+        this.Db = newDb;
     }
 }
 
