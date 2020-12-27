@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
+import { Logger } from '../utils/logger.utils';
+
 class Environment {
     private Env: string | undefined;
     private Port: string | undefined;
@@ -10,7 +12,6 @@ class Environment {
         dotenv.config({ path: path.join(__dirname, '../../.env') });
         this.Env = process.env.NODE_ENV;
         this.Port = process.env.PORT;
-        console.log(`Loading environment <${this.Env}> `);
         switch (this.Env) {
             case 'local':
             case 'dev':
@@ -22,6 +23,7 @@ class Environment {
                 };
                 break;
         }
+        Logger(`Environment <${this.Env}>`, 'FMagenta');
     }
 
     public get env(): string | undefined {

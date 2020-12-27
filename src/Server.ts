@@ -2,6 +2,8 @@ import express from 'express';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
+import { Logger } from './utils/logger.utils';
+import morganLogger from './configs/Logger.config';
 import Environment from './configs/Env.config';
 import { Database } from './configs/Db.config';
 import { CommonRoutesConfig } from './common/Route.common';
@@ -16,7 +18,7 @@ class Server {
     constructor() {
         this.database = new Database();
         this.app = express();
-        this.server = http.createServer();
+        this.server = http.createServer(this.app);
     }
 
     public setup() {
@@ -28,11 +30,11 @@ class Server {
         this.server = http.createServer(this.app);
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
-
+        this.app.use(morganLogger());
         this.routes.push(new VehicleRoutes(this.app));
 
         this.app.listen(Environment.port, () => {
-            console.log(`⚡️[server]: Server is running at port ${Environment.port}`);
+            Logger(`⚡️[server]: running at port ${Environment.port}`, 'FWhite');
         });
     }
 
@@ -42,7 +44,7 @@ class Server {
             throw new Error("Couldn't connect to database");
         });
         this.database.connection.on('open', () => {
-            console.log('Connected to dabatase');
+            Logger('Connected to dabatase', 'FBlue');
         });
     }
 }

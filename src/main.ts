@@ -1,5 +1,7 @@
 import Server from './Server';
 
+import { Logger } from './utils/logger.utils';
+
 import * as os from 'os';
 import * as cluster from 'cluster';
 
@@ -14,6 +16,6 @@ if (cluster.isMaster) {
         Server.connectDb();
         Server.start();
     } catch (err) {
-        console.error('Error at worker', err);
+        Logger(`Problem at worker: ${err}`, 'BRed');
     }
 }
