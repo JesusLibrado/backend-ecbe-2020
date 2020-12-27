@@ -9,7 +9,11 @@ if (cluster.isMaster) {
         cluster.fork();
     }
 } else {
-    Server.setup();
-    Server.connectDb();
-    Server.start();
+    try {
+        Server.setup();
+        Server.connectDb();
+        Server.start();
+    } catch (err) {
+        console.error('Error at worker', err);
+    }
 }

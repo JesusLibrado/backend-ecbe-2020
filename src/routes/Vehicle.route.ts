@@ -2,7 +2,6 @@ import { CommonRoutesConfig } from '../common/Route.common';
 import express from 'express';
 
 import VehicleDocument from '../models/Vehicle.model';
-import Vehicle from '../models/Vehicle.model';
 
 // import { VehicleClontroller } from '../controllers/Vehicle.controller';
 export class VehicleRoutes extends CommonRoutesConfig {

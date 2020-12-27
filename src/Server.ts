@@ -38,6 +38,12 @@ class Server {
 
     public connectDb() {
         this.database.connect();
+        this.database.connection.on('error', (err) => {
+            throw new Error("Couldn't connect to database");
+        });
+        this.database.connection.on('open', () => {
+            console.log('Connected to dabatase');
+        });
     }
 }
 
