@@ -3,6 +3,7 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
 import Environment from './configs/Env.config';
+import Database from './configs/Db.config';
 import { CommonRoutesConfig } from './common/Route.common';
 import { VehicleRoutes } from './routes/Vehicle.route';
 
@@ -13,9 +14,11 @@ class Server {
 
     constructor() {
         Environment.load();
+        this.app = express();
+        this.server = http.createServer();
     }
 
-    public init() {
+    public start() {
         this.app = express();
         this.server = http.createServer(this.app);
         this.app.use(bodyParser.json());
@@ -28,8 +31,8 @@ class Server {
         });
     }
 
-    public loadDatabase() {
-        console.log('loading database...');
+    public connectDb() {
+        Database.connect();
     }
 }
 

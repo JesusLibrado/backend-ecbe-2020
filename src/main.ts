@@ -5,8 +5,11 @@ import * as cluster from 'cluster';
 
 if (cluster.isMaster) {
     const CPUS: any = os.cpus();
-    CPUS.forEach(() => cluster.fork());
+    for (let i = 0; i < 2; i++) {
+        cluster.fork();
+    }
 } else {
-    Server.init();
+    Server.connectDb();
+    Server.start();
     // Server.loadDatabase();
 }

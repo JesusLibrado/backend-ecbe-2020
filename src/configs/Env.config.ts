@@ -15,6 +15,7 @@ class Environment {
             case 'dev':
                 this.Db = {
                     url: process.env.DEV_DB_URL,
+                    name: process.env.DEV_DB_NAME,
                     user: process.env.DEV_DB_USER,
                     password: process.env.DEV_DB_PWD,
                 };
@@ -36,10 +37,10 @@ class Environment {
         this.Port = newPort;
     }
 
-    public get db(): string | undefined {
+    public get db(): any | undefined {
         return this.Db;
     }
-    public set db(newDb: string | undefined) {
+    public set db(newDb: any | undefined) {
         this.Db = newDb;
     }
 }
