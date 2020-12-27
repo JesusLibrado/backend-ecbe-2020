@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 import Environment from './Env.config';
 
-class Database {
+export class Database {
     public connect(): void {
         const options = { useNewUrlParser: true, useUnifiedTopology: true };
         const fieldsRegex = /([<]username[>][:][<]password[>])/g;
@@ -17,4 +17,4 @@ class Database {
     }
 }
 
-export default new Database();
+export default mongoose;

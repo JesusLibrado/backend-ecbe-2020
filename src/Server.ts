@@ -3,7 +3,7 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 
 import Environment from './configs/Env.config';
-import Database from './configs/Db.config';
+import { Database } from './configs/Db.config';
 import { CommonRoutesConfig } from './common/Route.common';
 import { VehicleRoutes } from './routes/Vehicle.route';
 
@@ -11,8 +11,10 @@ class Server {
     private app: express.Application;
     private server: http.Server;
     private routes: CommonRoutesConfig[] = [];
+    private database: Database;
 
     constructor() {
+        this.database = new Database();
         this.app = express();
         this.server = http.createServer();
     }
@@ -35,7 +37,7 @@ class Server {
     }
 
     public connectDb() {
-        Database.connect();
+        this.database.connect();
     }
 }
 
