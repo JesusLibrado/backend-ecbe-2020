@@ -4,9 +4,9 @@
   "description": "Full stack dev evaluation. Devloped with React, Typescript, Node and Mongo.",
   "main": "dist",
   "scripts": {
-    "start": "tsc && node ./dist/app.js",
+    "start": "tsc && node ./dist/main.js",
     "debug": "export DEBUG=* && npm run dev",
-    "dev": "tsc & ENV=dev nodemon dist",
+    "dev": "tsc --project './tsconfig.json' --watch & NODE_ENV=dev nodemon dist/main.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
