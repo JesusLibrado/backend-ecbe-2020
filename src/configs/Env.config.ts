@@ -10,6 +10,7 @@ class Environment {
         dotenv.config({ path: path.join(__dirname, '../../.env') });
         this.Env = process.env.NODE_ENV;
         this.Port = process.env.PORT;
+        console.log(`Loading environment <${this.Env}> `);
         switch (this.Env) {
             case 'local':
             case 'dev':

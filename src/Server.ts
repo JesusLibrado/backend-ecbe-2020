@@ -13,9 +13,12 @@ class Server {
     private routes: CommonRoutesConfig[] = [];
 
     constructor() {
-        Environment.load();
         this.app = express();
         this.server = http.createServer();
+    }
+
+    public setup() {
+        Environment.load();
     }
 
     public start() {
@@ -36,5 +39,4 @@ class Server {
     }
 }
 
-// eslint-disable-next-line prettier/prettier
 export default new Server();

@@ -10,7 +10,7 @@ class Database {
         const databaseUrl = Environment.db.url.replace(fieldsRegex, newFields);
         mongoose
             .connect(`${databaseUrl}/${Environment.db.name}`, options)
-            .then((res) => console.log(res))
+            .then((res) => console.log(res.connections[0].name))
             .catch((err) => {
                 throw mongoose.mongo.MongoError;
             });
