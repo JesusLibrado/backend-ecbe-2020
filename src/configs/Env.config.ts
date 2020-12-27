@@ -14,6 +14,13 @@ class Environment {
         this.Port = process.env.PORT;
         switch (this.Env) {
             case 'local':
+                this.Db = {
+                    url: process.env.LOCAL_DB_URL,
+                    name: process.env.LOCAL_DB_NAME,
+                    user: process.env.LOCAL_DB_USER,
+                    password: process.env.LOCAL_DB_PWD,
+                };
+                break;
             case 'dev':
                 this.Db = {
                     url: process.env.DEV_DB_URL,

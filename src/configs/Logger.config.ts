@@ -5,7 +5,7 @@ import { dateTime, Logger } from '../utils/logger.utils';
 export default function (): any {
     morgan.token('date', () => {
         const date = dateTime();
-        Logger(`DATE: ${date}`, 'FCyan');
+        // Logger(`DATE: ${date}`, 'FCyan');s
         return date;
     });
 
