@@ -9,7 +9,6 @@ import Environment from './configs/Env.config';
 import { Database } from './configs/Db.config';
 import { CommonRoutesConfig } from './common/Route.common';
 import { VehicleRoutes } from './routes/Vehicle.route';
-import { throws } from 'assert';
 
 class Server {
     private app: express.Application;
