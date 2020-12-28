@@ -29,6 +29,14 @@ class Environment {
                     password: process.env.DEV_DB_PWD,
                 };
                 break;
+            case 'prod':
+                this.Db = {
+                    url: process.env.DEV_DB_URL,
+                    name: process.env.DEV_DB_NAME,
+                    user: process.env.DEV_DB_USER,
+                    password: process.env.DEV_DB_PWD,
+                };
+                break;
         }
         Logger(`Environment <${this.Env}>`, 'FMagenta');
     }
