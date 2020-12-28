@@ -29,7 +29,7 @@ class Environment {
                     password: process.env.DEV_DB_PWD,
                 };
                 break;
-            case 'prod':
+            case 'production':
                 this.Db = {
                     url: process.env.DEV_DB_URL,
                     name: process.env.DEV_DB_NAME,
