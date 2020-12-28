@@ -48,6 +48,21 @@ export class VehicleRoutes extends CommonRoutesConfig {
                 next(err);
             }
         });
+        this.router.put('/:id', async (req, res, next) => {
+            const session = mongoose.startSession();
+            (await session).startTransaction();
+            try {
+                const carId = Number(req.params.id);
+                const updated = await VehicleDocument.findOneAndUpdate({ carId: carId }, req.query);
+                (await session).commitTransaction();
+                (await session).endSession();
+                res.json(updated);
+            } catch (err) {
+                (await session).endSession();
+                Logger(err, 'FRed');
+                next(err);
+            }
+        });
         return this.router;
     }
 }
