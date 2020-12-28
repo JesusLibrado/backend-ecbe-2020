@@ -9,6 +9,7 @@ import Environment from './configs/Env.config';
 import { Database } from './configs/Db.config';
 import { CommonRoutesConfig } from './common/Route.common';
 import { VehicleRoutes } from './routes/Vehicle.route';
+import { throws } from 'assert';
 
 class Server {
     private app: express.Application;
@@ -33,7 +34,13 @@ class Server {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(morganLogger());
+
         this.routes.push(new VehicleRoutes(this.app));
+
+        for (let i = 0; i < this.routes.length; i++) {
+            const current = this.routes[i];
+            this.app.use(current.basePath, current.getRouter());
+        }
 
         this.app.listen(Environment.port, () => {
             Logger(`⚡️[server]: running at port ${Environment.port}`, 'FWhite');
