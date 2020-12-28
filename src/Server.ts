@@ -1,6 +1,7 @@
 import express from 'express';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { Logger } from './utils/logger.utils';
 import morganLogger from './configs/Logger.config';
@@ -28,6 +29,7 @@ class Server {
     public start() {
         this.app = express();
         this.server = http.createServer(this.app);
+        this.app.use(cors());
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(morganLogger());
